@@ -3,7 +3,7 @@
 namespace Laravel\Scout\Engines;
 
 use Laravel\Scout\Builder;
-use AlgoliaSearch\Client as Algolia;
+use Algolia\AlgoliaSearch\Client as Algolia;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,14 +12,14 @@ class AlgoliaEngine extends Engine
     /**
      * The Algolia client.
      *
-     * @var \AlgoliaSearch\Client
+     * @var \Algolia\AlgoliaSearch\Client
      */
     protected $algolia;
 
     /**
      * Create a new engine instance.
      *
-     * @param  \AlgoliaSearch\Client  $algolia
+     * @param  \Algolia\AlgoliaSearch\Client  $algolia
      * @return void
      */
     public function __construct(Algolia $algolia)
@@ -31,7 +31,7 @@ class AlgoliaEngine extends Engine
      * Update the given model in the index.
      *
      * @param  \Illuminate\Database\Eloquent\Collection  $models
-     * @throws \AlgoliaSearch\AlgoliaException
+     * @throws \Algolia\AlgoliaSearch\Exceptions\AlgoliaException
      * @return void
      */
     public function update($models)
@@ -46,7 +46,7 @@ class AlgoliaEngine extends Engine
             $models->each->pushSoftDeleteMetadata();
         }
 
-        $index->addObjects($models->map(function ($model) {
+        $index->saveObjects($models->map(function ($model) {
             $array = array_merge(
                 $model->toSearchableArray(), $model->scoutMetadata()
             );

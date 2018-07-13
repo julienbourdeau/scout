@@ -17,6 +17,12 @@
             "email": "taylor@laravel.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../API-clients/php-v2-poc"
+        }
+    ],
     "require": {
         "php": ">=7.0",
         "illuminate/bus": "~5.4",
@@ -27,7 +33,7 @@
         "illuminate/support": "~5.4"
     },
     "require-dev": {
-        "algolia/algoliasearch-client-php": "^1.10",
+        "algolia/algoliasearch-client-php": "^2.0.0-alpha",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0"
     },
